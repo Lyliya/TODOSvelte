@@ -144,33 +144,73 @@
 
 <main>
     <Navbar name={user.username}/>
+    <div class="container">
+        <h1>Tasks</h1>
         <div class="task-list">
             {#each tasks as task (task.id)}
                 <div class="task">
                     <input type="checkbox" bind:checked={task.done} on:change={() => updateTask(task.id)} />
-                    <input bind:value={task.title} on:keyup={() => handleKeyUp(event, task.id)} />
-                    <button on:click={deleteTask(task.id)}>X</button>
+                    <input class="text-input" bind:value={task.title} on:keyup={(event) => handleKeyUp(event, task.id)} />
+                    <div class="delete" on:click={deleteTask(task.id)}>x</div>
                 </div>
             {/each}
-            <input placeholder="Add a task" bind:value={newtask} on:keyup={() => handleKeyUp(event, null)} />
+            <div class="task">
+                <input type="checkbox" disabled />
+                <input class="text-input" placeholder="Add a task" bind:value={newtask} on:keyup={(event) => handleKeyUp(event, null)} />
+                <div class="delete" disabled>x</div>
+            </div>
         </div>
-    <button on:click={disconnect}>
-        Disconnect
-    </button>
+    </div>
 </main>
 
 <style>
-    .task {
+
+    h1 {
+        color: white;
+    }
+
+    .container {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+    }
+
+    .task-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+        width: 80%;
+    }
+
+    .task {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+        border-top: 2px solid #1C1C1C;
+    }
+
+    .text-input {
+        width: 80%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .delete {
+        font-size: 20px;
+        font-weight: bolder;
+        color: grey;
+        padding: auto;
+        cursor: pointer;
     }
 
     input {
         border: none;
-        color: black;
+        color: white;
         background-color: var(--body-color);
-        /* width: 80%; */
     }
     input:focus {
         outline: none;

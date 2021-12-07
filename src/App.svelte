@@ -19,10 +19,11 @@
 
 <style>
 	main {
+        padding: 0;
+        margin: 0;
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+        background-color: #161616;
+        height: 100vh;
 	}
 
 </style>
